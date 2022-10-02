@@ -1,10 +1,10 @@
 package spring_mvc_hibernate.service;
 
-import spring_mvc_hibernate.dao.UserDAO;
-import spring_mvc_hibernate.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import spring_mvc_hibernate.dao.UserDAO;
+import spring_mvc_hibernate.model.User;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserDAO userDAO;
+    private UserDAO userDAO;
 
     @Override
     public List<User> getAllUsers() {
@@ -26,8 +26,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(int id, User user) {
-        userDAO.updateUser(id, user);
+    public void updateUser(User user) {
+        userDAO.updateUser(user);
     }
 
     @Override

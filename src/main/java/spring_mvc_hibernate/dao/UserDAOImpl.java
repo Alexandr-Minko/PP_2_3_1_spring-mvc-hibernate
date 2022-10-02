@@ -2,10 +2,8 @@ package spring_mvc_hibernate.dao;
 
 import org.springframework.stereotype.Repository;
 import spring_mvc_hibernate.model.User;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -27,37 +25,21 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void updateUser(int id, User user) {
-        User userToUpdated = getUser(id);
-        userToUpdated.setName(user.getName());
-        userToUpdated.setSurname(user.getSurname());
+    public void updateUser(User user) {
+        entityManager.merge(user);
     }
 
     @Override
     public User getUser(int id) {
-        TypedQuery<User> query = entityManager
-                .createQuery("SELECT u FROM User u WHERE u.id = :id", User.class)
-                .setParameter("id",id);
-
-        return query.getResultList().stream().findAny().orElse(null);
+        return entityManager.find(User.class, id);
     }
 
     @Override
     public void deleteUser(int id) {
-        entityManager
-                .createQuery("DELETE FROM User u WHERE u.id = :id")
-                .setParameter("id", id)
-                .executeUpdate();
+        entityManager.remove(getUser(id));
     }
 
 }
-
-
-
-
-
-
-
 
 
 

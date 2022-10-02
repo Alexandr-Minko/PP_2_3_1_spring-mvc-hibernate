@@ -2,6 +2,7 @@ package spring_mvc_hibernate.config;
 
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
 import javax.servlet.Filter;
 
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -31,7 +32,7 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     // чтобы работали запросы Patch и Delete
     @Override
     protected Filter[] getServletFilters() {
-        return new Filter[] { new HiddenHttpMethodFilter() };
+        return new Filter[]{new HiddenHttpMethodFilter()};
     }
 
 }

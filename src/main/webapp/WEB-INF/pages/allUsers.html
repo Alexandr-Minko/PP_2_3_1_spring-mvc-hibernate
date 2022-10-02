@@ -10,24 +10,24 @@
 
 
 <h3>
-<div>
-<table>
+    <div>
+        <table>
 
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-    </tr>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
 
-    <tr th:each="user : ${allUsers}">
-        <td>
-            <a th:href="@{/{id}(id=${user.getId()})}" th:text="${user.getId()}">id</a>
-        </td>
+            <tr th:each="user : ${allUsers}">
+                <td>
+                    <a th:href="@{/{id}(id=${user.getId()})}" th:text="${user.getId()}">id</a>
+                </td>
 
-        <td th:text="${user.getName()}">name</td>
-    </tr>
+                <td th:text="${user.getName()}">name</td>
+            </tr>
 
-</table>
-</div>
+        </table>
+    </div>
 
     <br>
     <a th:href="@{/new}">Add new User</a>

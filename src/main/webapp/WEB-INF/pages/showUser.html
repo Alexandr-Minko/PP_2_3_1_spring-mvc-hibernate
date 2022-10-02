@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
@@ -11,12 +10,12 @@
 
 <h3>
 
-<p th:text="${user.getId()}">VALUE</p>
-<p th:text="${user.getName()}">VALUE</p>
-<p th:text="${user.getSurname()}">VALUE</p>
-<br>
+    <p th:text="${user.getId()}">VALUE</p>
+    <p th:text="${user.getName()}">VALUE</p>
+    <p th:text="${user.getSurname()}">VALUE</p>
+    <br>
 
-<a th:href="@{/{id}/edit(id=${user.getId()})}">Edit User</a>
+    <a th:href="@{/{id}/edit(id=${user.getId()})}">Edit User</a>
 
 </h3>
 

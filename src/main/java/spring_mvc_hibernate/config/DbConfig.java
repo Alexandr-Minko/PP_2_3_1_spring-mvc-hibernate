@@ -20,40 +20,40 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class DbConfig {
 
-   @Autowired
-   private Environment env;
+    @Autowired
+    private Environment env;
 
-   @Bean
-   public DataSource getDataSource() {
-      DriverManagerDataSource dataSource = new DriverManagerDataSource();
-      dataSource.setDriverClassName(env.getProperty("db.driver"));
-      dataSource.setUrl(env.getProperty("db.url"));
-      dataSource.setUsername(env.getProperty("db.username"));
-      dataSource.setPassword(env.getProperty("db.password"));
-      return dataSource;
-   }
+    @Bean
+    public DataSource getDataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(env.getProperty("db.driver"));
+        dataSource.setUrl(env.getProperty("db.url"));
+        dataSource.setUsername(env.getProperty("db.username"));
+        dataSource.setPassword(env.getProperty("db.password"));
+        return dataSource;
+    }
 
-   @Bean
-   public LocalContainerEntityManagerFactoryBean getEntityManager() {
-      LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
-      entityManager.setDataSource(getDataSource());
-      entityManager.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-      entityManager.setPackagesToScan("spring_mvc_hibernate.model");
+    @Bean
+    public LocalContainerEntityManagerFactoryBean getEntityManager() {
+        LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
+        entityManager.setDataSource(getDataSource());
+        entityManager.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        entityManager.setPackagesToScan("spring_mvc_hibernate.model");
 
-      Properties properties = new Properties();
-      properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-      properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-      entityManager.setJpaProperties(properties);
+        Properties properties = new Properties();
+        properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+        properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+        entityManager.setJpaProperties(properties);
 
-      return entityManager;
-   }
+        return entityManager;
+    }
 
-   @Bean
-   public JpaTransactionManager getJpaTransactionManager() {
-      JpaTransactionManager transactionManager = new JpaTransactionManager();
-      transactionManager.setEntityManagerFactory(getEntityManager().getObject());
+    @Bean
+    public JpaTransactionManager getJpaTransactionManager() {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(getEntityManager().getObject());
 
-      return transactionManager;
-   }
+        return transactionManager;
+    }
 
 }
